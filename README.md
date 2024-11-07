@@ -1,8 +1,3 @@
- 
-
-
-> Open this page at [https://bluegoat11.github.io/jetman-one/](https://bluegoat11.github.io/jetman-one/)
-
 ## Use as Extension
 
 This repository can be added as an **extension** in MakeCode.
