@@ -10,6 +10,9 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`Finish`, function (sprite, lo
 function Shoot () {
 	
 }
+/**
+ * FINISH THIS
+ */
 let Y_Velocity = 0
 let randLevel = 0
 let startGame = 0
