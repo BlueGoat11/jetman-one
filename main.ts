@@ -1,20 +1,18 @@
 namespace SpriteKind {
     export const startButton = SpriteKind.create()
 }
+/**
+ * To finish:
+ * 
+ * Level, Shooting, Bugs, and Polishing.
+ */
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     startGame = 1
-})
-scene.onOverlapTile(SpriteKind.Player, assets.tile`Finish`, function (sprite, location) {
-    nextLevel += 1
 })
 function Shoot () {
 	
 }
-/**
- * FINISH THIS
- */
 let Y_Velocity = 0
-let randLevel = 0
 let startGame = 0
 startGame = 0
 let startNotice = sprites.create(assets.image`Start Prompt`, SpriteKind.startButton)
@@ -32,28 +30,7 @@ game.splash("This game goes on as long as you can avoid the obstacles.")
 let jetMan = sprites.create(assets.image`Idle`, SpriteKind.Player)
 jetMan.setStayInScreen(true)
 music.play(music.stringPlayable("C D C D C D C D ", 50), music.PlaybackMode.LoopingInBackground)
-info.setLife(5)
-let nextLevel = 1
-while (true) {
-    randLevel = randint(1, 5)
-    if (randLevel == 1) {
-        tiles.setCurrentTilemap(tilemap`Level1`)
-    }
-    if (randLevel == 2) {
-        tiles.setCurrentTilemap(tilemap`Level2`)
-    }
-    if (randLevel == 3) {
-        tiles.setCurrentTilemap(tilemap`Level1`)
-    }
-    if (randLevel == 4) {
-        tiles.setCurrentTilemap(tilemap`Level1`)
-    }
-    if (randLevel == 5) {
-        tiles.setCurrentTilemap(tilemap`Level1`)
-    }
-    nextLevel = 0
-    pauseUntil(() => nextLevel == 1)
-}
+info.setLife(3)
 forever(function () {
     if (startGame == 1) {
         if (controller.B.isPressed() == true) {
