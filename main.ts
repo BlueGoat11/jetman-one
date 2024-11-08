@@ -2,9 +2,6 @@ namespace SpriteKind {
     export const startButton = SpriteKind.create()
     export const badProjectile = SpriteKind.create()
 }
-// To finish:
-// 
-// Level, GROUND MECHANICS, Shooting, Bugs, and Polishing.
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     startGame = 1
 })
@@ -42,7 +39,11 @@ info.onLifeZero(function () {
     game.setGameOverEffect(false, effects.dissolve)
     game.gameOver(false)
 })
-let badboiBullet: Sprite = null
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
+    music.setVolume(70)
+    music.play(music.melodyPlayable(music.knock), music.PlaybackMode.InBackground)
+})
 let Y_Velocity = 0
 let badBoi: Sprite = null
 let projectile: Sprite = null
@@ -68,9 +69,6 @@ info.setLife(3)
 jetMan.setPosition(24, 60)
 scene.cameraFollowSprite(jetMan)
 tiles.setCurrentTilemap(tilemap`level`)
-while (true) {
-	
-}
 game.onUpdateInterval(5000, function () {
     badBoi = sprites.create(assets.image`enemyPlane`, SpriteKind.Enemy)
     tiles.placeOnRandomTile(badBoi, assets.tile`transparency16`)
@@ -107,28 +105,6 @@ forever(function () {
             pause(100)
         }
     }
-})
-forever(function () {
-    badboiBullet = sprites.create(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . 4 4 4 4 . . . . . . 
-        . . . . 4 4 4 5 5 4 4 4 . . . . 
-        . . . 3 3 3 3 4 4 4 4 4 4 . . . 
-        . . 4 3 3 3 3 2 2 2 1 1 4 4 . . 
-        . . 3 3 3 3 3 2 2 2 1 1 5 4 . . 
-        . 4 3 3 3 3 2 2 2 2 2 5 5 4 4 . 
-        . 4 3 3 3 2 2 2 4 4 4 4 5 4 4 . 
-        . 4 4 3 3 2 2 4 4 4 4 4 4 4 4 . 
-        . 4 2 3 3 2 2 4 4 4 4 4 4 4 4 . 
-        . . 4 2 3 3 2 4 4 4 4 4 2 4 . . 
-        . . 4 2 2 3 2 2 4 4 4 2 4 4 . . 
-        . . . 4 2 2 2 2 2 2 2 2 4 . . . 
-        . . . . 4 4 2 2 2 2 4 4 . . . . 
-        . . . . . . 4 4 4 4 . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, SpriteKind.badProjectile)
-    badboiBullet.setVelocity(-150, 0)
-    pause(500)
 })
 game.onUpdateInterval(100, function () {
     if (startGame == 1) {
