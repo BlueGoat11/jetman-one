@@ -6,16 +6,34 @@ namespace SpriteKind {
  * 
  * Level, Shooting, Bugs, and Polishing.
  */
-scene.onHitWall(SpriteKind.Player, function (sprite, location) {
-    Y_Velocity = 0
-})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     startGame = 1
 })
 function Shoot () {
-	
+    projectile = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . 6 6 6 6 6 6 . . . . . 
+        . . . . 6 9 9 9 9 9 9 6 . . . . 
+        . . . . 6 9 9 9 9 9 9 6 . . . . 
+        . . . . . 6 6 6 6 6 6 . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, jetMan, 200, 0)
+    music.setVolume(50)
+    music.play(music.melodyPlayable(music.pewPew), music.PlaybackMode.InBackground)
 }
 let Y_Velocity = 0
+let projectile: Sprite = null
+let jetMan: Sprite = null
 let startGame = 0
 startGame = 0
 let startNotice = sprites.create(assets.image`Start Prompt`, SpriteKind.startButton)
@@ -30,7 +48,7 @@ sprites.destroy(startNotice)
 game.splash("Welcome to JetMan ONE!")
 game.splash("Hold The A button to fly.")
 game.splash("This game goes on as long as you can avoid the obstacles.")
-let jetMan = sprites.create(assets.image`Idle`, SpriteKind.Player)
+jetMan = sprites.create(assets.image`Idle`, SpriteKind.Player)
 jetMan.setStayInScreen(true)
 music.play(music.stringPlayable("C D C D C D C D ", 50), music.PlaybackMode.LoopingInBackground)
 info.setLife(3)
@@ -63,6 +81,19 @@ forever(function () {
             music.setVolume(40)
             music.play(music.melodyPlayable(music.beamUp), music.PlaybackMode.UntilDone)
         }
+    }
+})
+forever(function () {
+    while (jetMan.tileKindAt(TileDirection.Bottom, sprites.dungeon.darkGroundNorth)) {
+        jetMan.y += -1
+    }
+    while (jetMan.tileKindAt(TileDirection.Top, sprites.dungeon.darkGroundSouth)) {
+        jetMan.y += 1
+    }
+})
+forever(function () {
+    if (startGame == 1) {
+        jetMan.x += 0.5
     }
 })
 game.onUpdateInterval(100, function () {
