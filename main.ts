@@ -31,6 +31,8 @@ let jetMan = sprites.create(assets.image`Idle`, SpriteKind.Player)
 jetMan.setStayInScreen(true)
 music.play(music.stringPlayable("C D C D C D C D ", 50), music.PlaybackMode.LoopingInBackground)
 info.setLife(3)
+scene.cameraFollowSprite(jetMan)
+tiles.setCurrentTilemap(tilemap`Level`)
 forever(function () {
     if (startGame == 1) {
         if (controller.B.isPressed() == true) {
