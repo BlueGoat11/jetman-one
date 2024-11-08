@@ -31,6 +31,11 @@ function Shoot () {
     music.setVolume(50)
     music.play(music.melodyPlayable(music.pewPew), music.PlaybackMode.InBackground)
 }
+info.onLifeZero(function () {
+    game.setGameOverMessage(false, "WHOMP WHOMP GET OUT!!!")
+    game.setGameOverEffect(false, effects.dissolve)
+    game.gameOver(false)
+})
 let Y_Velocity = 0
 let projectile: Sprite = null
 let jetMan: Sprite = null
@@ -74,6 +79,12 @@ forever(function () {
 forever(function () {
     Y_Velocity += 0.2
     jetMan.y += Y_Velocity
+})
+forever(function () {
+    if (jetMan.tileKindAt(TileDirection.Center, sprites.dungeon.hazardLava1)) {
+        info.changeLifeBy(-1)
+        jetMan.x += -30
+    }
 })
 forever(function () {
     if (startGame == 1) {
