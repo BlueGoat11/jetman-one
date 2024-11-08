@@ -1,11 +1,6 @@
 namespace SpriteKind {
     export const startButton = SpriteKind.create()
 }
-/**
- * To finish:
- * 
- * Level, GROUND MECHANICS, Shooting, Bugs, and Polishing.
- */
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     startGame = 1
 })
@@ -89,6 +84,11 @@ forever(function () {
         pause(100)
     }
 })
+/**
+ * To finish:
+ * 
+ * Level, GROUND MECHANICS, Shooting, Bugs, and Polishing.
+ */
 forever(function () {
     if (startGame == 1) {
         if (controller.A.isPressed() == true) {
