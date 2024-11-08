@@ -17,7 +17,7 @@
         "tileset": [
             "myTiles.transparency16"
         ],
-        "displayName": "Level"
+        "displayName": "hbbhb"
     },
     "level2": {
         "id": "level2",
@@ -36,7 +36,7 @@
             "sprites.dungeon.doorClosedNorth",
             "myTiles.tile1"
         ],
-        "displayName": "Level1"
+        "displayName": "level"
     },
     "*": {
         "mimeType": "image/x-mkcd-f4",

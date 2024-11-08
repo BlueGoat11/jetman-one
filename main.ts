@@ -6,6 +6,9 @@ namespace SpriteKind {
  * 
  * Level, Shooting, Bugs, and Polishing.
  */
+scene.onHitWall(SpriteKind.Player, function (sprite, location) {
+    Y_Velocity = 0
+})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     startGame = 1
 })
@@ -31,8 +34,9 @@ let jetMan = sprites.create(assets.image`Idle`, SpriteKind.Player)
 jetMan.setStayInScreen(true)
 music.play(music.stringPlayable("C D C D C D C D ", 50), music.PlaybackMode.LoopingInBackground)
 info.setLife(3)
+jetMan.setPosition(24, 60)
 scene.cameraFollowSprite(jetMan)
-tiles.setCurrentTilemap(tilemap`Level`)
+tiles.setCurrentTilemap(tilemap`level`)
 forever(function () {
     if (startGame == 1) {
         if (controller.B.isPressed() == true) {
