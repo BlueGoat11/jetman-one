@@ -4,7 +4,7 @@ namespace SpriteKind {
 /**
  * To finish:
  * 
- * Level, Shooting, Bugs, and Polishing.
+ * Level, GROUND MECHANICS, Shooting, Bugs, and Polishing.
  */
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     startGame = 1
@@ -81,14 +81,6 @@ forever(function () {
             music.setVolume(40)
             music.play(music.melodyPlayable(music.beamUp), music.PlaybackMode.UntilDone)
         }
-    }
-})
-forever(function () {
-    while (jetMan.tileKindAt(TileDirection.Bottom, sprites.dungeon.darkGroundNorth)) {
-        jetMan.y += -1
-    }
-    while (jetMan.tileKindAt(TileDirection.Top, sprites.dungeon.darkGroundSouth)) {
-        jetMan.y += 1
     }
 })
 forever(function () {
