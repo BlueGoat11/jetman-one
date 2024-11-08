@@ -43,6 +43,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     info.changeLifeBy(-1)
     music.setVolume(70)
     music.play(music.melodyPlayable(music.knock), music.PlaybackMode.InBackground)
+    pause(100)
 })
 let Y_Velocity = 0
 let badBoi: Sprite = null
