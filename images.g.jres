@@ -29,6 +29,16 @@
         "mimeType": "image/x-mkcd-f4",
         "displayName": "Game BG"
     },
+    "image1": {
+        "data": "hwQYABAAAAAAAADADwAAAAAAACzyAAAAAADAIiIPAAAAAJwrIg8AAP/Ambki8gAA/8+bGSLyAAAvL7QRIvIAAC9MJBEi8gAAz0wikSLyAADPTCKbIvL/APAsIiIi8sIPAC8iIiL8zPwALyIiQv8v8gAvIiJM9P//AMAiwiJE//8AwCLCIkL8/wDALMIiIvIPAMwswiwi8gDATCTC/CLyAMxEIswPL/IATCTywg/A/AD8/88iDwAAAAAAACwPAAAAAAAA8A8AAAA=",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "enemyPlane"
+    },
+    "image2": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAEREAAAAAAA0MyREAAAAMDMzMyIEAAA0MzMzI0IAADQzIyIzQgBANDMiIiIiBEBFIiJEJCIEQEUiQkREIgRARCJCREQiBABEEUJEREIAAEQRRUQkQgAAQFRVREIEAAAARERERAAAAAAAREQAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "bulletBadboi"
+    },
     "*": {
         "mimeType": "image/x-mkcd-f4",
         "dataEncoding": "base64",

@@ -1,6 +1,12 @@
 namespace SpriteKind {
     export const startButton = SpriteKind.create()
+    export const badProjectile = SpriteKind.create()
 }
+/**
+ * To finish:
+ * 
+ * Level, GROUND MECHANICS, Shooting, Bugs, and Polishing.
+ */
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     startGame = 1
 })
@@ -26,12 +32,24 @@ function Shoot () {
     music.setVolume(50)
     music.play(music.melodyPlayable(music.pewPew), music.PlaybackMode.InBackground)
 }
+scene.onHitWall(SpriteKind.Enemy, function (sprite, location) {
+    tiles.placeOnRandomTile(badBoi, assets.tile`transparency16`)
+})
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sprite, location) {
+    info.changeLifeBy(-1)
+    for (let index = 0; index < 12; index++) {
+        jetMan.y += -5
+    }
+    pause(100)
+})
 info.onLifeZero(function () {
     game.setGameOverMessage(false, "WHOMP WHOMP GET OUT!!!")
     game.setGameOverEffect(false, effects.dissolve)
     game.gameOver(false)
 })
+let badboiBullet: Sprite = null
 let Y_Velocity = 0
+let badBoi: Sprite = null
 let projectile: Sprite = null
 let jetMan: Sprite = null
 let startGame = 0
@@ -55,6 +73,10 @@ info.setLife(3)
 jetMan.setPosition(24, 60)
 scene.cameraFollowSprite(jetMan)
 tiles.setCurrentTilemap(tilemap`level`)
+game.onUpdateInterval(5000, function () {
+    badBoi = sprites.create(assets.image`enemyPlane`, SpriteKind.Enemy)
+    tiles.placeOnRandomTile(badBoi, assets.tile`transparency16`)
+})
 forever(function () {
     if (startGame == 1) {
         if (controller.B.isPressed() == true) {
@@ -76,26 +98,19 @@ forever(function () {
     jetMan.y += Y_Velocity
 })
 forever(function () {
-    if (jetMan.tileKindAt(TileDirection.Center, sprites.dungeon.hazardLava1)) {
-        info.changeLifeBy(-1)
-        for (let index = 0; index < 12; index++) {
-            jetMan.y += -5
-        }
-        pause(100)
-    }
-})
-/**
- * To finish:
- * 
- * Level, GROUND MECHANICS, Shooting, Bugs, and Polishing.
- */
-forever(function () {
     if (startGame == 1) {
         if (controller.A.isPressed() == true) {
             music.setVolume(40)
             music.play(music.melodyPlayable(music.beamUp), music.PlaybackMode.UntilDone)
         }
     }
+})
+forever(function () {
+	
+})
+forever(function () {
+    badboiBullet = sprites.createProjectileFromSide(assets.image`bulletBadboi`, -150, 0)
+    pause(500)
 })
 forever(function () {
     if (startGame == 1) {
