@@ -83,7 +83,10 @@ forever(function () {
 forever(function () {
     if (jetMan.tileKindAt(TileDirection.Center, sprites.dungeon.hazardLava1)) {
         info.changeLifeBy(-1)
-        jetMan.x += -30
+        for (let index = 0; index < 12; index++) {
+            jetMan.y += -2.5
+        }
+        pause(100)
     }
 })
 forever(function () {
