@@ -2,11 +2,9 @@ namespace SpriteKind {
     export const startButton = SpriteKind.create()
     export const badProjectile = SpriteKind.create()
 }
-/**
- * To finish:
- * 
- * Level, GROUND MECHANICS, Shooting, Bugs, and Polishing.
- */
+// To finish:
+// 
+// Level, GROUND MECHANICS, Shooting, Bugs, and Polishing.
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     startGame = 1
 })
@@ -32,9 +30,6 @@ function Shoot () {
     music.setVolume(50)
     music.play(music.melodyPlayable(music.pewPew), music.PlaybackMode.InBackground)
 }
-scene.onHitWall(SpriteKind.Enemy, function (sprite, location) {
-    tiles.placeOnRandomTile(badBoi, assets.tile`transparency16`)
-})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.hazardLava1, function (sprite, location) {
     info.changeLifeBy(-1)
     for (let index = 0; index < 12; index++) {
@@ -73,25 +68,12 @@ info.setLife(3)
 jetMan.setPosition(24, 60)
 scene.cameraFollowSprite(jetMan)
 tiles.setCurrentTilemap(tilemap`level`)
+while (true) {
+	
+}
 game.onUpdateInterval(5000, function () {
     badBoi = sprites.create(assets.image`enemyPlane`, SpriteKind.Enemy)
     tiles.placeOnRandomTile(badBoi, assets.tile`transparency16`)
-})
-forever(function () {
-    if (startGame == 1) {
-        if (controller.B.isPressed() == true) {
-            Shoot()
-            pause(100)
-        }
-    }
-})
-forever(function () {
-    if (startGame == 1) {
-        if (controller.A.isPressed() == true) {
-            jetMan.setImage(assets.image`Flying`)
-            Y_Velocity += -0.6
-        }
-    }
 })
 forever(function () {
     Y_Velocity += 0.2
@@ -106,16 +88,47 @@ forever(function () {
     }
 })
 forever(function () {
-	
-})
-forever(function () {
-    badboiBullet = sprites.createProjectileFromSide(assets.image`bulletBadboi`, -150, 0)
-    pause(500)
-})
-forever(function () {
     if (startGame == 1) {
         jetMan.x += 0.5
     }
+})
+forever(function () {
+    if (startGame == 1) {
+        if (controller.A.isPressed() == true) {
+            jetMan.setImage(assets.image`Flying`)
+            Y_Velocity += -0.6
+        }
+    }
+})
+forever(function () {
+    if (startGame == 1) {
+        if (controller.B.isPressed() == true) {
+            Shoot()
+            pause(100)
+        }
+    }
+})
+forever(function () {
+    badboiBullet = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . 4 4 4 4 . . . . . . 
+        . . . . 4 4 4 5 5 4 4 4 . . . . 
+        . . . 3 3 3 3 4 4 4 4 4 4 . . . 
+        . . 4 3 3 3 3 2 2 2 1 1 4 4 . . 
+        . . 3 3 3 3 3 2 2 2 1 1 5 4 . . 
+        . 4 3 3 3 3 2 2 2 2 2 5 5 4 4 . 
+        . 4 3 3 3 2 2 2 4 4 4 4 5 4 4 . 
+        . 4 4 3 3 2 2 4 4 4 4 4 4 4 4 . 
+        . 4 2 3 3 2 2 4 4 4 4 4 4 4 4 . 
+        . . 4 2 3 3 2 4 4 4 4 4 2 4 . . 
+        . . 4 2 2 3 2 2 4 4 4 2 4 4 . . 
+        . . . 4 2 2 2 2 2 2 2 2 4 . . . 
+        . . . . 4 4 2 2 2 2 4 4 . . . . 
+        . . . . . . 4 4 4 4 . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, SpriteKind.badProjectile)
+    badboiBullet.setVelocity(-150, 0)
+    pause(500)
 })
 game.onUpdateInterval(100, function () {
     if (startGame == 1) {
